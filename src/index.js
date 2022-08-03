@@ -35,11 +35,41 @@ const MORSE_TABLE = {
     '---..':  '8',
     '----.':  '9',
     '-----':  '0',
+    ' '    :  ' ',
 };
 
 function decode(expr) {
-    // write your solution here
-}
+
+    let morseСode = []
+    let result = []
+    let inputArr = expr.split('')
+    let arrToExplore = []
+    for(let i = 0 ; i < inputArr.length ; i = i + 10) {
+    arrToExplore.push((inputArr.slice(i , i + 10)).join(''))
+    }
+    let arrToExploreWithout0 = arrToExplore.map(function(item) {
+      return item = item.replace(/^0+/, '');
+    })
+    
+    arrToExploreWithout0.forEach((function(item) { if(item === '**********') {morseСode.push(' ');
+    } else {
+      let morseChar = '';
+      for(let i = 0 ; i < item.length ; i = i + 2) {
+        let ell = item.slice(i , i + 2); 
+      if(ell === '10') {morseChar += '.'} else {
+        morseChar += '-'}
+      }
+     morseСode.push(morseChar);
+    }
+     morseChar = '' }));
+      
+      let rrr= morseСode.map((function(item) {
+         return item = MORSE_TABLE[item]
+      }))
+    return rrr.join('')
+    
+    
+    }
 
 module.exports = {
     decode
